@@ -1,0 +1,30 @@
+package arraysAndHashing;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class TwoSum {
+    public int[] twoSumBruteSolution(int[] nums, int target) {
+        // O(n^2) solution
+        for(int i = 0 ;i<nums.length;i++){
+            for(int j = i+1;j<nums.length;j++){
+                if(nums[i]+nums[j]==target)return new int[]{i,j};
+            }
+        }
+        return new int[]{0,1};
+    }
+    public int[] twoSum(int[] numbers, int target) {
+        // O(n) solution
+        int[] result = new int[2];
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        for (int i = 0; i < numbers.length; i++) {
+            if (map.containsKey(target - numbers[i])) {
+                result[1] = i;
+                result[0] = map.get(target - numbers[i]);
+                return result;
+            }
+            map.put(numbers[i], i);
+        }
+        return result;
+    }
+}
